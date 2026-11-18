@@ -1,2 +1,3 @@
-# AIV-1945
-AIV-1945
+# 1945
+
+Shoot'em up a scorrimento verticale in C con [raylib](https://www.raylib.com), AIV Videogame Programming 3° anno
