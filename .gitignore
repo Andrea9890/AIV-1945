@@ -23,6 +23,10 @@ compile_commands.json
 *.ilk
 *.exp
 
+# Raylib precompilata (MSVC): necessaria per compilare dopo il clone
+!lib/raylibdll.lib
+!lib/raylib.dll
+
 # IDE CLion
 .idea/
 .idea/*
