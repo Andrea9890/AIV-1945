@@ -11,9 +11,26 @@ static const char* const STATE_NAMES[] = {
 
 static constexpr int STATE_NAME_FONT_SIZE = 40;
 
+static void LoadWindowIcon(void)
+{
+    const char* path = TextFormat("%s%s", GetApplicationDirectory(), "assets/icon.png");
+    Image icon = LoadImage(path);
+
+    if (!IsImageValid(icon))
+    {
+        TraceLog(LOG_WARNING, "GAME: could not load window icon '%s'", path);
+        return;
+    }
+
+    SetWindowIcon(icon);
+    UnloadImage(icon);
+}
+
 bool GameInit(Game* game)
 {
     *game = (Game){ .state = STATE_SPLASH };
+
+    LoadWindowIcon();
 
     // TODO: Remember to allocate here
 

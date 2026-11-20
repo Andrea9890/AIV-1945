@@ -15,7 +15,9 @@ target_include_directories(game1945 PRIVATE include)
 target_link_libraries(game1945 PRIVATE ${CMAKE_SOURCE_DIR}/lib/raylibdll.lib)
 
 # After build, copy raylib.dll and assets\ next to the exe
-add_custom_command(TARGET game1945 POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_SOURCE_DIR}/lib/raylib.dll $<TARGET_FILE_DIR:game1945>
-    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/assets $<TARGET_FILE_DIR:game1945>/assets
+add_custom_target(copy_runtime_files
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_SOURCE_DIR}/lib/raylib.dll ${CMAKE_CURRENT_BINARY_DIR}
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/assets ${CMAKE_CURRENT_BINARY_DIR}/assets
+    COMMENT "Copying raylib.dll and assets"
 )
+add_dependencies(game1945 copy_runtime_files)
