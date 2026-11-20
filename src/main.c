@@ -1,17 +1,32 @@
-#include "raylib.h"
+#include "config.h"
+#include "core/game.h"
+#include "raylib/raylib.h"
 
 int main(void)
 {
-    InitWindow(640, 480, "1945");
-    SetTargetFPS(60);
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "1945");
+    SetTargetFPS(TARGET_FPS);
+    InitAudioDevice();
 
-    while (!WindowShouldClose())
+    Game game;
+    if (!GameInit(&game))
     {
+        CloseAudioDevice();
+        CloseWindow();
+        return 1;
+    }
+
+    while (!WindowShouldClose() && !GameShouldQuit(&game))
+    {
+        GameUpdate(&game, GetFrameTime());
+
         BeginDrawing();
-        ClearBackground(BLACK);
+        GameDraw(&game);
         EndDrawing();
     }
 
+    GameDeinit(&game);
+    CloseAudioDevice();
     CloseWindow();
     return 0;
 }
