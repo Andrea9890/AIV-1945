@@ -1,0 +1,58 @@
+#pragma once
+
+#include "raylib/raylib.h"
+
+typedef enum SpriteId
+{
+    SPRITE_PLAYER_0,
+    SPRITE_PLAYER_1,
+    SPRITE_PLAYER_2,
+
+    SPRITE_ENEMY_GREEN_0,
+    SPRITE_ENEMY_GREEN_1,
+    SPRITE_ENEMY_GREEN_2,
+
+    SPRITE_ENEMY_WHITE_0,
+    SPRITE_ENEMY_WHITE_1,
+    SPRITE_ENEMY_WHITE_2,
+
+    SPRITE_ENEMY_BIG_0,
+    SPRITE_ENEMY_BIG_1,
+    SPRITE_ENEMY_BIG_2,
+
+    SPRITE_PLAYER_BULLET,
+    SPRITE_ENEMY_BULLET,
+
+    SPRITE_EXPLOSION_SMALL_0,
+    SPRITE_EXPLOSION_SMALL_1,
+    SPRITE_EXPLOSION_SMALL_2,
+    SPRITE_EXPLOSION_SMALL_3,
+    SPRITE_EXPLOSION_SMALL_4,
+    SPRITE_EXPLOSION_SMALL_5,
+
+    SPRITE_EXPLOSION_BIG_0,
+    SPRITE_EXPLOSION_BIG_1,
+    SPRITE_EXPLOSION_BIG_2,
+    SPRITE_EXPLOSION_BIG_3,
+    SPRITE_EXPLOSION_BIG_4,
+    SPRITE_EXPLOSION_BIG_5,
+    SPRITE_EXPLOSION_BIG_6,
+
+    SPRITE_ISLAND_0,
+    SPRITE_ISLAND_1,
+    SPRITE_ISLAND_2,
+
+    SPRITE_SEA,
+
+    SPRITE_COUNT
+} SpriteId;
+
+typedef struct Atlas
+{
+    Texture2D texture;
+    Rectangle frames[SPRITE_COUNT];
+} Atlas;
+
+bool AtlasLoad(Atlas* atlas);
+void AtlasUnload(Atlas* atlas);
+void AtlasDraw(const Atlas* atlas, SpriteId id, Vector2 center, Color tint);
