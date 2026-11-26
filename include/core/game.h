@@ -1,5 +1,6 @@
 #pragma once
 
+#include "gfx/animation.h"
 #include "gfx/atlas.h"
 
 typedef enum GameState
@@ -17,6 +18,7 @@ typedef struct Game
     GameState state;
     GameState stateBeforeTest;
     Atlas atlas;
+    Animation animation;
     int menuIndex;
     int score;
     int highScore;

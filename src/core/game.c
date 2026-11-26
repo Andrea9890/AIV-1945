@@ -37,6 +37,7 @@ static void LoadWindowIcon()
 bool GameInit(Game* game)
 {
     *game = (Game){ .state = STATE_SPLASH };
+    game->animation = AnimationInit(SPRITE_PLAYER_0, 3, PLAYER_FRAME_TIME, true);
 
     LoadWindowIcon();
 
@@ -160,6 +161,9 @@ void GameUpdate(Game* game, float deltaTime)
             break;
 
         case STATE_TEST:
+            AnimationUpdate(&game->animation, deltaTime);
+            break;
+
         case STATE_COUNT: break;
     }
 }
@@ -224,6 +228,9 @@ static void DrawTest(const Game* game)
         };
         AtlasDraw(&game->atlas, (SpriteId)i, center, WHITE);
     }
+
+    Vector2 animCenter = { SCREEN_WIDTH - TEST_SLOT_WIDTH * 0.5f, TEST_TOP * 0.5f };
+    AtlasDraw(&game->atlas, AnimationCurrentFrame(&game->animation), animCenter, WHITE);
 }
 
 void GameDraw(const Game* game)

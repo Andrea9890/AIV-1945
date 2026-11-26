@@ -2,7 +2,7 @@
 #include "core/game.h"
 #include "raylib/raylib.h"
 
-int main(void)
+int main()
 {
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "1945");
     SetTargetFPS(TARGET_FPS);
