@@ -105,3 +105,12 @@ void AtlasDraw(const Atlas* atlas, SpriteId id, Vector2 center, Color tint)
 
     DrawTextureRec(atlas->texture, frame, topLeft, tint);
 }
+
+void AtlasDrawRotated(const Atlas* atlas, SpriteId id, Vector2 center, float rotation, Color tint)
+{
+    Rectangle frame = atlas->frames[id];
+    Rectangle dest = { center.x, center.y, frame.width, frame.height };
+    Vector2 origin = { frame.width * 0.5f, frame.height * 0.5f };
+
+    DrawTexturePro(atlas->texture, frame, dest, origin, rotation, tint);
+}

@@ -56,3 +56,4 @@ typedef struct Atlas
 bool AtlasLoad(Atlas* atlas);
 void AtlasUnload(Atlas* atlas);
 void AtlasDraw(const Atlas* atlas, SpriteId id, Vector2 center, Color tint);
+void AtlasDrawRotated(const Atlas* atlas, SpriteId id, Vector2 center, float rotation, Color tint);

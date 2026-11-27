@@ -2,6 +2,7 @@
 
 #include "gfx/animation.h"
 #include "gfx/atlas.h"
+#include "world/level.h"
 
 typedef enum GameState
 {
@@ -19,6 +20,7 @@ typedef struct Game
     GameState stateBeforeTest;
     Atlas atlas;
     Animation animation;
+    Level level;
     int menuIndex;
     int score;
     int highScore;

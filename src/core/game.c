@@ -46,6 +46,8 @@ bool GameInit(Game* game)
         return false;
     }
 
+    LevelInit(&game->level);
+
     return true;
 }
 
@@ -68,6 +70,7 @@ void GameChangeState(Game* game, GameState next)
 
         case STATE_PLAYING:
             game->score = 0;
+            LevelInit(&game->level);
             break;
 
         case STATE_GAME_OVER:
@@ -113,6 +116,7 @@ static void UpdateMenu(Game* game, float deltaTime)
 
 static void UpdatePlaying(Game* game, float deltaTime)
 {
+    LevelUpdate(&game->level, deltaTime);
     AdvanceOnEnter(game, STATE_GAME_OVER);
 }
 
@@ -193,6 +197,7 @@ static void DrawMenu(const Game* game)
 
 static void DrawPlaying(const Game* game)
 {
+    LevelDraw(&game->level, &game->atlas);
     DrawText("TEST ATLAS - F1 to open", 8, 8, TEST_FONT_SIZE, RAYWHITE);
     DrawStateName(STATE_PLAYING);
 }
